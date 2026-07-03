@@ -83,6 +83,7 @@ Organized by what you're trying to do, not by folder — each row links to the d
 | Understand *why* this works | `context/why-a-second-brain.md`, `context/the-6-levels.md`, the `wiki/Topics/` seed pages |
 | Set up your brain | `/setup-brain`, `context/export-handout.md` |
 | Get data in from outside sources (Google Docs/Drive/Gmail/Calendar, Claude/ChatGPT/Grok exports, live connectors) | `context/connecting-outside-sources.md`, `context/how-to-build.md` |
+| Find EVERY source you have — the complete census (LinkedIn, Meta, TikTok, every LLM provider, the full Google catalog, fitness, commerce…) + the legal lever when no export exists | `context/data-census.md` |
 | Automate the maintenance loops | `context/loops.md`, `context/model-routing.md` |
 | Use external tools, CLIs, and model APIs safely | `context/external-tools-and-apis.md` |
 | Build and deploy software projects from your brain | `context/building-software-projects.md`, `context/deploying-to-cloudflare.md` |
