@@ -1,0 +1,19 @@
+# Personal data NEVER gets committed. raw/ holds your originals — local only.
+raw/*
+!raw/README.md
+!raw/MANIFEST.md
+!raw/inbox
+raw/inbox/*
+!raw/inbox/.gitkeep
+!raw/ingested
+raw/ingested/*
+!raw/ingested/topic-sources
+raw/ingested/topic-sources/*
+!raw/ingested/topic-sources/.gitkeep
+
+# If you fork this kit for your own brain, consider whether wiki/ and memory/
+# belong in a PRIVATE remote only. They contain your compiled personal knowledge.
+
+.DS_Store
+*.log
+.env
