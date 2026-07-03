@@ -10,7 +10,7 @@ The architecture is the LLM-wiki pattern ([Karpathy, April 2026](https://gist.gi
 
 1. **Prerequisites**: [Claude Code](https://claude.com/claude-code) installed and signed in; git; optionally [Obsidian](https://obsidian.md) pointed at `wiki/` as your reading/graph surface.
 2. **Clone this kit** (or Code → Download ZIP) into a folder that will BE your second brain — e.g. `~/brain/`.
-3. **Open Claude Code in that folder and run `/setup-brain`.** It interviews you (who you are, what the brain is for, what data you have, what stays private-forever), writes your `NORTHSTAR.md`, and personalizes the schema. **Do this before ingesting anything** — the schema shapes what compilation produces.
+3. **Open Claude Code in that folder and run `/setup-brain`.** It interviews you (who you are, what the brain is for, what data you have, what stays private-forever), writes your `NORTHSTAR.md`, and personalizes the schema. **Do this before ingesting anything** — the schema shapes what compilation produces. Pro move: if you already have data exports, drop them into `raw/inbox/` *first* — setup then drafts most of its questions' answers from your own data and just asks you to confirm-and-correct.
 4. **Request your data exports today** — see `context/export-handout.md`. Most services take hours-to-days to deliver, and some download links expire in 24 hours, so request now.
 5. **Drop exports into `raw/inbox/` and run `/ingest-source`.** Claude reads each source, writes/updates wiki pages, cross-links, logs, and files the original away. Repeat as data arrives.
 6. From then on: ask questions (good answers get filed back as pages), run `/wiki-maintenance` at session end, `/wiki-lint` every 5–10 sessions, `/retro` to make the system improve itself.

@@ -1,5 +1,7 @@
 # Northstar
 
+> Filled by `/setup-brain`. If your exports are already in `raw/inbox/`, setup drafts these answers from your own data and asks you to confirm-and-correct — drop data in first for a smarter setup. The private-forever section is always yours to state explicitly; it is never inferred.
+
 The single anchor document for this second brain. Filled in once at setup (typically by the `/setup-brain` interview), revisited whenever the answers stop feeling true. This is the one file every other piece of substrate points back to — when in doubt about scope, tone, or what belongs in the wiki, the answer is here.
 
 ## Who this is for

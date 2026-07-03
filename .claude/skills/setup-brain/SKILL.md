@@ -20,6 +20,20 @@ Confirm `raw/inbox/`, `raw/ingested/topic-sources/`, `wiki/{Topics,Entities,Proj
 
 If `git status` fails, run `git init` and make a first commit of the bare skeleton before touching content. Git is the reversibility layer for everything that follows; nothing should be built on a tree with no history.
 
+### Step 0.5 — Mine the inbox before asking anything
+
+Check `raw/inbox/` before starting the interview. If the user has already dropped exports or notes there, **most of the interview's answers are sitting in that data** — and asking cold questions the substrate can already answer is the exact failure this whole system exists to end.
+
+```bash
+ls -la raw/inbox/
+```
+
+If the inbox is non-empty, do a *light, local* pass — titles and metadata first, not deep content synthesis: conversation titles from AI exports (run the matching `scripts/parse_*.py` if the format fits), note titles, filenames, the entities and topics that recur. From that, DRAFT provisional answers to interview questions 1–4: who this person appears to be, what they seem to work on and care about, which data sources they demonstrably have, which tools they actually use. Then run the interview as **confirm-and-correct** instead of blank-form: *"Your data suggests you're X working on Y, with sources A/B/C — what's wrong or missing in that picture?"* People are far better at correcting a concrete draft than at answering abstract questions from a standing start.
+
+Two hard boundaries: (1) **Question 5 — private-forever — is ALWAYS asked explicitly and never inferred.** Inferring a privacy boundary from the data is backwards: the scan itself must stay shallow and local until that answer is on the record. (2) The inbox scan drafts the Northstar; it does not ingest. No wiki pages get written from inbox content until setup is complete and `/ingest-source` runs under the finished schema.
+
+If the inbox is empty, proceed with the cold interview below — and mention that dropping exports in first (see `context/export-handout.md`) makes setup smarter if they'd rather do that and come back.
+
 ### Step 1 — Interview, one question at a time
 
 Do not batch these into a form. Ask one, wait for the answer, then ask the next — each answer should genuinely shape the next question, and a wall of questions gets skimmed rather than answered. Explain briefly *why* each question matters so the user isn't just filling in blanks.
@@ -32,7 +46,7 @@ Do not batch these into a form. Ask one, wait for the answer, then ask the next 
 
 ### Step 2 — Write NORTHSTAR.md
 
-Using the five answers, write `NORTHSTAR.md` at the repo root. It's the one-page statement of what this brain is *for* — every later prioritization call (what to ingest first, what a lint pass should flag, what `/retro` should optimize toward) reads back to this file. Keep it short — a page, not a manifesto. Cover: who this is for, what the brain should do (from answer 2), the chosen memory level (from answer 4) and why, and the private-forever boundary (from answer 5) stated as a hard rule, not a suggestion.
+Using the five answers (confirmed against the inbox evidence where it existed), write `NORTHSTAR.md` at the repo root. It's the one-page statement of what this brain is *for* — every later prioritization call (what to ingest first, what a lint pass should flag, what `/retro` should optimize toward) reads back to this file. Keep it short — a page, not a manifesto. Cover: who this is for, what the brain should do (from answer 2), the chosen memory level (from answer 4) and why, and the private-forever boundary (from answer 5) stated as a hard rule, not a suggestion.
 
 ### Step 3 — Fill CLAUDE.md placeholders
 
