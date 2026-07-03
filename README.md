@@ -20,9 +20,9 @@ The architecture is the LLM-wiki pattern ([Karpathy, April 2026](https://gist.gi
 | Path | What it is |
 |---|---|
 | `CLAUDE.md` | **The keystone** — the schema that turns Claude Code into a disciplined wiki maintainer (page formats, conventions, the three operations: ingest / query / lint) |
-| `NORTHSTAR.md` | Your purpose statement — written by `/setup-brain` from your answers |
+| `NORTHSTAR.md` | Your purpose statement — written by `/setup-brain` from your answers. Never met a "Northstar"? The file explains the concept and ships the second brain's own as the worked example |
 | `context/` | The understanding: why this works (`why-a-second-brain.md`), the full build manual (`how-to-build.md`), which memory architecture fits you (`the-6-levels.md`), which Claude model for which job (`model-routing.md`), the automation layer (`loops.md`), and the per-service data-export handout |
-| `constitution/` | How the assistant behaves (`assistant-constitution.md`), how it thinks (`epistemic-layer.md` — 11 reasoning moves), how it verifies (`verification.md`) |
+| `constitution/` | What a constitution is + the second brain's own six rules (`README.md`), how the assistant behaves (`assistant-constitution.md`), how it thinks (`epistemic-layer.md` — 11 reasoning moves), how it verifies (`verification.md`) |
 | `.claude/skills/` | The workflows as callable commands: `/setup-brain`, `/ingest-source`, `/session-start`, `/wiki-maintenance`, `/wiki-lint`, `/survey-sources`, `/retro`, `/assistant` |
 | `wiki/` | Your brain-to-be: Topics, Entities, Projects, Sources, Synthesis, Personal, Journal, Tasks (+ `_schema.md`, `_log.md`) |
 | `raw/` | Your originals — immutable, **gitignored by default** so personal data never gets pushed anywhere |

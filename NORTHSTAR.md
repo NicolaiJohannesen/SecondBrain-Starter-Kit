@@ -4,6 +4,20 @@
 
 The single anchor document for this second brain. Filled in once at setup (typically by the `/setup-brain` interview), revisited whenever the answers stop feeling true. This is the one file every other piece of substrate points back to — when in doubt about scope, tone, or what belongs in the wiki, the answer is here.
 
+## First: what a Northstar even is
+
+If you've never used the term: a **Northstar is the fixed point you steer by** — a short, honest statement of what a system is *for*, written down so that every later decision can be checked against it instead of re-argued from scratch. It's not a mission statement for show; it's a working tool. When you're unsure whether something belongs in your wiki, whether a feature is worth building, or whether the system has drifted — you read the Northstar and the answer is usually obvious. A system without one slowly becomes everything, which is the same as nothing.
+
+Its counterpart, the **constitution** (see [constitution/](constitution/)), covers the other half: the Northstar says what the system is *for*; the constitution says how it *behaves* while getting there — the standing rules that hold from session to session so nothing important gets re-decided (or quietly forgotten) each time. Direction and discipline. You need both, and one page of each is enough.
+
+## The worked example: the second brain's own Northstar
+
+This kit ships with its own Northstar, so you can see the shape before writing yours:
+
+> **Every session starts from everything you've ever fed it.** The second brain exists so that your AI reasons from your accumulated context — your thinking, decisions, sources, and history — instead of starting from zero every conversation. It must be **compounding** (each session leaves it richer than it found it), **trustworthy** (verified, contradiction-flagged, never letting opinion harden into fact), and **owned** (plain files on your machine, readable without any tool, exportable in one copy-paste). The human does judgment and direction; the AI does the maintenance that killed every second brain before it. The 30-day test: you stop re-explaining yourself.
+
+Everything in this kit serves that statement, and anything that doesn't serve it stays out. That's a Northstar doing its job. Yours, below, *specializes* it: same system purpose, pointed at your particular life and work.
+
 ## Who this is for
 
 {{USER_NAME}} — {{USER_ONE_LINE_DESCRIPTION}}

@@ -46,6 +46,8 @@ Do not batch these into a form. Ask one, wait for the answer, then ask the next 
 
 ### Step 2 — Write NORTHSTAR.md
 
+**If the user hasn't met the concepts before, explain them first using the shipped worked examples** — the "what a Northstar even is" section and the system's own Northstar in `NORTHSTAR.md`, and `constitution/README.md` for what a constitution is and the second brain's own six rules. Most new users have never written either; the example gives them the shape, and their answers then *specialize* the system Northstar rather than starting from a blank page.
+
 Using the five answers (confirmed against the inbox evidence where it existed), write `NORTHSTAR.md` at the repo root. It's the one-page statement of what this brain is *for* — every later prioritization call (what to ingest first, what a lint pass should flag, what `/retro` should optimize toward) reads back to this file. Keep it short — a page, not a manifesto. Cover: who this is for, what the brain should do (from answer 2), the chosen memory level (from answer 4) and why, and the private-forever boundary (from answer 5) stated as a hard rule, not a suggestion.
 
 ### Step 3 — Fill CLAUDE.md placeholders
