@@ -55,7 +55,12 @@ scripts/                Parsers that convert export formats into ingestable stag
 memory/                 The assistant's learned lessons about working with you
 ```
 
-**The wiki starts pre-populated with 24 seed pages** in `wiki/Topics/` — on concepts this kit itself is built from (Second Brain, Culture of Learning, Feedback Loops, AI Agents, Memory Compaction, and others). Each is tagged `origin: kit-seed` in its frontmatter. They exist so the graph isn't empty on day one and so concepts referenced throughout these docs (Northstar, constitution, culture of learning) have a worked page behind them. They are yours now — edit, extend, or delete them freely; nothing about the kit depends on them staying as shipped.
+**The wiki starts pre-populated with 25 seed pages** in `wiki/Topics/` — the extra knowledge your brain ships with, so the graph isn't empty on day one and every concept these docs use has a worked page behind it. Each is tagged `origin: kit-seed`; they are yours now — edit, extend, or delete them freely; nothing depends on them staying as shipped. What's in there:
+
+- **The machinery your brain runs on**: Second Brain · Personal Context Layer · Loop Engineering · Claude Code Agentic Primitives · AI Agents · Sub-agents and Agent Teams · Agent Skills · Agent Orchestration · Multi-Agent Systems · Memory Compaction · Engine-Writes-Substrate · The Harness Is the Product · Model Context Protocol (MCP) · Context Engineering · Agent Failure Modes
+- **The thinking layer behind the constitution**: Feedback Loops (Universal Pattern) · Culture of Learning · Single-loop vs Double-loop Learning · OODA Loop · Commander's Intent (the lineage of your NORTHSTAR.md) · **Intent-Driven Development** (the intent cascade from Northstar down to *tests* — TDD as the executable drift-guard: write the failing test first and an AI executor can't rationalize its way around your intent) · Plan-Writing for AI Coding Agents · Verification Discipline and Assertion Types · Writing as External Memory · Compound Growth
+
+When your own ingested content mentions agents, loops, or feedback — and it will — those wikilinks resolve into this spine from day one.
 
 **The nine skills** in `.claude/skills/` — each a callable slash command:
 
@@ -83,6 +88,18 @@ Organized by what you're trying to do, not by folder — each row links to the d
 | Build and deploy software projects from your brain | `context/building-software-projects.md`, `context/deploying-to-cloudflare.md` |
 | Keep the brain healthy over time | `/wiki-maintenance`, `/wiki-lint`, `/retro`, `/memory-compact`, `context/memory-compaction.md` |
 | Understand how these docs themselves are organized | `context/about-these-docs.md` |
+
+## The whole project runs a culture of learning
+
+This isn't a feature of one skill — it's the design principle of the entire kit, at every layer:
+
+- **The brain learns**: every ingested source compounds the wiki; every good answer gets filed back as a page instead of evaporating in chat history.
+- **The assistant learns**: `/retro` runs at the end of substantive sessions and codifies corrections, near-misses, and insights into `memory/` — so nothing has to be taught twice. `/memory-compact` keeps those lessons loadable as they accumulate.
+- **The system's own rules learn**: the constitution and `CLAUDE.md` are living documents — editing them deliberately *is* how you tune your system's character (constitution rule 6: the system that runs month two should be better than the one that ran month one).
+- **The docs learn**: hit a question these docs didn't answer? Open an issue. A repeated question is a documentation bug, and maintainers fold it back in ([`context/about-these-docs.md`](context/about-these-docs.md)).
+- **Even drift-prevention is a learning structure**: intent pinned at every altitude — your `NORTHSTAR.md` at the top, the constitution in the middle, and *failing-tests-written-first* at the bottom ([`wiki/Topics/Intent-Driven Development.md`](wiki/Topics/Intent-Driven%20Development.md)) — so the system can detect when it's drifting instead of discovering it later.
+
+The background for all of this is the [Culture of Learning](wiki/Topics/Culture%20of%20Learning.md) seed page: the Senge/Argyris/Dweck/Edmondson research lineage, and why cultures where lessons get *captured* compound while cultures where lessons live in conversation decay.
 
 ## The honest expectations
 
