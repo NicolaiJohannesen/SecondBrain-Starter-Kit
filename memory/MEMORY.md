@@ -19,4 +19,4 @@ Cross-session memory: durable corrections, preferences, and reference facts that
 
 - This index has a working limit of ~200 lines. It is a **router, not a store** — one line per memory: `- [Title](file.md) — hook (≤200 chars)`.
 - High-stakes rules get a ⭐ and keep direct lines forever (pinned — exempt from compaction).
-- When the index nears its limit or a section outgrows ~15 entries, run a compaction cycle per [context/memory-compaction.md](../context/memory-compaction.md): tier the structure first, merge same-class entries second (specimens cited, corrections preserved), consolidate files last — always into git, never by deletion. Stale files move to `memory/archive/`, never get deleted.
+- When the index nears its limit or a section outgrows ~15 entries, run `/memory-compact` (method: [context/memory-compaction.md](../context/memory-compaction.md)): tier the structure first, merge same-class entries second (specimens cited, corrections preserved), consolidate files last — always into git, never by deletion. Stale files move to `memory/archive/`, never get deleted.
