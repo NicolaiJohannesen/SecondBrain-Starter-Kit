@@ -11,8 +11,6 @@ tags:
 aliases:
   - IDD
   - Intent Driven Development
-  - Test-Driven Development
-  - TDD
   - Tests as intent anchors
   - Spec-first development
   - Intent cascade
@@ -58,6 +56,7 @@ Practice rules: every substantive code change adds or updates tests · for bug f
 Intent artifacts are overhead when work is small, throwaway, or the intent is genuinely *discovered by building* (locking intent before you know it freezes the wrong direction). Visual/UI work needs rendered-state checks rather than unit tests — the principle transfers, the instrument changes. And a green suite can lie (wrong behaviors covered, tests weakened to pass) — which is why the judgment rungs above the test line never fully disappear.
 
 ## Related
+- [[Test-Driven Development]] — the executable bottom rung, on its own page
 - [[Commander's Intent]] — the doctrinal parent; [NORTHSTAR.md](../../NORTHSTAR.md) is your instance
 - [[Plan-Writing for AI Coding Agents]] — the spec rung directly above tests
 - [[Loop Engineering]] — gate-able output as the precondition for autonomous loops
