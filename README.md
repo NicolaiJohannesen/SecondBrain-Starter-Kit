@@ -6,13 +6,18 @@ The architecture is the LLM-wiki pattern ([Karpathy, April 2026](https://gist.gi
 
 **You own the artifact.** Markdown files in folders you control, versioned with git, readable without any tool. No platform can reprice or delete your brain.
 
-## Quickstart (30 minutes to a working system)
+## Quickstart (data first — 30 minutes of setup, exports arrive over days)
+
+The setup is deliberately **flipped from how most tools onboard you**: instead of filling in a form about yourself, you first get the system access to your original data — then it reads that data, tells you what it sees, and asks you only what the data can't answer. Throughout, it tells you what it's trying to do and why, so you can help it.
 
 1. **Prerequisites**: [Claude Code](https://claude.com/claude-code) installed and signed in; git; optionally [Obsidian](https://obsidian.md) pointed at `wiki/` as your reading/graph surface.
 2. **Clone this kit** (or Code → Download ZIP) into a folder that will BE your second brain — e.g. `~/brain/`.
-3. **Open Claude Code in that folder and run `/setup-brain`.** It interviews you (who you are, what the brain is for, what data you have, what stays private-forever), writes your `NORTHSTAR.md`, and personalizes the schema. **Do this before ingesting anything** — the schema shapes what compilation produces. Pro move: if you already have data exports, drop them into `raw/inbox/` *first* — setup then drafts most of its questions' answers from your own data and just asks you to confirm-and-correct.
-4. **Request your data exports today** — see `context/export-handout.md`. Most services take hours-to-days to deliver, and some download links expire in 24 hours, so request now.
-5. **Drop exports into `raw/inbox/` and run `/ingest-source`.** Claude reads each source, writes/updates wiki pages, cross-links, logs, and files the original away. Repeat as data arrives.
+3. **Get your data flowing — before anything else.** This is the long pole: exports take hours-to-days to arrive and most download links expire in 24–48 hours, so the requests go in first and everything else happens while they're in flight. Three lanes (full per-service instructions: `context/export-handout.md`):
+   - **Already on your machine** — old notes folders, an Obsidian vault, previously downloaded exports → drop copies into `raw/inbox/`.
+   - **Live connectors** — connect Google Drive / Calendar / Gmail (claude.ai → Settings → Connectors) so calendar and email feed the brain continuously.
+   - **Batch exports** — request them today: Claude, ChatGPT, Grok, Google Takeout (Keep / Calendar / Mail), Apple Health, X, Reddit, Kindle…
+4. **Open Claude Code in the folder and run `/setup-brain`.** It reads whatever data is already reachable, drafts a picture of who you are and what you work on, and asks you to **confirm-and-correct** — plus the few questions data can't answer (what you want the brain to *do*, and what is private-forever, which is always yours to state explicitly). From your answers it writes your `NORTHSTAR.md` and personalizes the schema. Full ingestion only starts after this — the schema shapes what compilation produces.
+5. **As exports arrive, drop them into `raw/inbox/` and run `/ingest-source`.** Claude reads each source, writes/updates wiki pages, cross-links, logs, and files the original away.
 6. From then on: ask questions (good answers get filed back as pages), run `/wiki-maintenance` at session end, `/wiki-lint` every 5–10 sessions, `/retro` to make the system improve itself.
 
 ## What's in the kit

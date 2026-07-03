@@ -17,9 +17,11 @@ The failure modes here are known. Design against them before writing the first f
 - **Automation must be reversible.** Every scheduled agent should write a log entry for what it changed, and changes should stay revertible — git makes this nearly free. "Be careful" is not a fix; reversibility is the actual fix.
 - **The markdown-vs-database question is settled for this use case.** For a single individual with up to roughly 50,000–100,000 tokens of dense wiki, markdown wins on auditability, ownership, and zero infrastructure. Add a search index only if the corpus outgrows the context window — markdown stays canonical either way. Full verification in [context/the-6-levels.md](the-6-levels.md).
 
-## Step 0 — Define purpose and schema, before any data
+## Step 0 — Start the data flowing, then define purpose and schema
 
-This is the intake interview you run on yourself before touching a single export. The answers become your instructions file (the equivalent of a `CLAUDE.md`), which is the single highest-leverage document in the whole system — a well-designed schema turns the AI into a disciplined maintainer; a vague one turns it into a generic chatbot that happens to write files.
+**The ordering that actually works: request your data access first, define the schema second, ingest third.** The export requests are the long pole — they take hours-to-days to arrive and the download links expire fast (Step 2 has the details) — so they go in *before* anything else, and the thinking happens while they're in flight. And if you're setting up with an AI assistant, get it access to the data *before* it interviews you: the data answers most of the questions, and the assistant should interrogate what it can reach, present you a draft picture, and ask only what the data can't answer (with the privacy boundary — question 5 below — always answered by you explicitly, never inferred). An assistant doing this should say what it's trying to do at each step, so you can help it.
+
+What must still happen **before any full ingestion** is the schema: the intake below. The answers become your instructions file (the equivalent of a `CLAUDE.md`), which is the single highest-leverage document in the whole system — a well-designed schema turns the AI into a disciplined maintainer; a vague one turns it into a generic chatbot that happens to write files.
 
 1. **Who are you and what do you do?** This seeds the personal-biography and people/entity pages.
 2. **What should the brain actually do?** Research depth, personal/life memory, work context, or some mix of the three. This decides your page taxonomy.
