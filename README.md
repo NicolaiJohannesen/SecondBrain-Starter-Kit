@@ -1,10 +1,12 @@
 # Second Brain Starter Kit
 
-Everything you need to build your own **AI-maintained second brain**: a persistent, compounding knowledge base in plain markdown that Claude Code maintains for you — so your AI reasons from everything you've ever fed it instead of starting from zero every conversation.
+**What this is**: everything you need to build your own AI-maintained second brain — a persistent, compounding knowledge base in plain markdown that Claude Code maintains for you.
 
-The architecture is the LLM-wiki pattern ([Karpathy, April 2026](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)): immutable raw sources in, compiled cross-linked wiki out, an instruction schema in between — plus the layers most DIY builds skip: an epistemic quality layer (so the brain is *trustworthy*, not just large), an assistant constitution, a task system, and the maintenance loops that keep it alive.
+**Why it exists**: every new AI conversation starts blank. You re-explain who you are, what you're working on, and what you already tried — every single time — because the model has nothing to reason from but the current chat. This kit gives Claude Code a compiled wiki to read from and write to instead, so it reasons from everything you've ever fed it rather than starting from zero.
 
-**You own the artifact.** Markdown files in folders you control, versioned with git, readable without any tool. No platform can reprice or delete your brain.
+The architecture is the LLM-wiki pattern ([Karpathy, April 2026](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)): immutable raw sources in, a cross-linked wiki out, an instruction schema in between — plus the layers most DIY builds skip. An **epistemic-quality layer** keeps the brain trustworthy, not just large: load-bearing claims get verified, evidence gets labeled, contradictions get named instead of silently resolved. An **assistant constitution** fixes how Claude behaves toward you so it doesn't have to be re-negotiated every session. A **task system** and **maintenance loops** (lint, retro, memory compaction) keep the whole thing from rotting the way most personal wikis do.
+
+**You own the artifact.** Plain markdown files, versioned with git, readable without any tool. No platform can reprice, lock, or delete your brain.
 
 ## Quickstart (data first — 30 minutes of setup, exports arrive over days)
 
@@ -20,19 +22,67 @@ The setup is deliberately **flipped from how most tools onboard you**: instead o
 5. **As exports arrive, drop them into `raw/inbox/` and run `/ingest-source`.** Claude reads each source, writes/updates wiki pages, cross-links, logs, and files the original away.
 6. From then on: ask questions (good answers get filed back as pages), run `/wiki-maintenance` at session end, `/wiki-lint` every 5–10 sessions, `/retro` to make the system improve itself.
 
-## What's in the kit
+## The structure — what every folder is
 
-| Path | What it is |
+Once `/setup-brain` has run, this is the map. Everything under `wiki/` is content Claude writes and rewrites over time; everything outside it (the schema, the constitution, the skills) is closer to fixed infrastructure you rarely touch directly.
+
+```
+wiki/                   The brain itself — everything Claude reads and writes
+  Topics/                 Subject-matter deep dives — a concept you've researched or care about
+  Entities/                People, organizations, products, places referenced meaningfully
+  Projects/                Things you're building or have built
+  Sources/                 One record page per ingested source
+  Synthesis/               Cross-source analysis connecting 3+ topics
+  Personal/                Health, finance, life knowledge
+  Journal/                 Append-only daily log — trajectory, not just state
+  Tasks/                   The task system: all-tasks.md (the blob), most-important-now.md, tasks-os.md
+  _schema.md               The page-type and frontmatter spec — read before writing any page
+  _log.md                  Append-only ingestion log
+
+raw/                    Your originals — immutable, gitignored by default
+  inbox/                   The only door in — drop any source here
+  ingested/                Everything processed, kept as provenance, filed by topic
+
+CLAUDE.md               The keystone — the schema that turns Claude Code into a disciplined
+                         wiki maintainer (page formats, conventions, the three operations)
+NORTHSTAR.md             Your purpose statement — what this brain is for, written by /setup-brain
+constitution/           What a constitution is + this kit's own six rules (README.md), how the
+                         assistant behaves (assistant-constitution.md), how it thinks
+                         (epistemic-layer.md), how it verifies (verification.md)
+context/                The explanations and how-to guides — see "Find what you need" below
+.claude/skills/         The workflows as callable commands (nine, one line each below)
+scripts/                Parsers that convert export formats into ingestable staging JSON
+memory/                 The assistant's learned lessons about working with you
+```
+
+**The wiki starts pre-populated with 24 seed pages** in `wiki/Topics/` — on concepts this kit itself is built from (Second Brain, Culture of Learning, Feedback Loops, AI Agents, Memory Compaction, and others). Each is tagged `origin: kit-seed` in its frontmatter. They exist so the graph isn't empty on day one and so concepts referenced throughout these docs (Northstar, constitution, culture of learning) have a worked page behind them. They are yours now — edit, extend, or delete them freely; nothing about the kit depends on them staying as shipped.
+
+**The nine skills** in `.claude/skills/` — each a callable slash command:
+
+- `/setup-brain` — first-run bootstrap: reads your data, drafts your `NORTHSTAR.md`, personalizes the schema
+- `/ingest-source` — process one new source from `raw/inbox/` into the wiki
+- `/session-start` — orient at the start of a session: what changed, what's next
+- `/wiki-maintenance` — quick end-of-session hygiene check, scoped to pages touched that session
+- `/wiki-lint` — periodic whole-wiki health check: orphan pages, stale claims, contradictions
+- `/survey-sources` — refresh `raw/MANIFEST.md`, the processing-status tracker
+- `/retro` — self-improvement retrospective: codify corrections and near-misses automatically
+- `/memory-compact` — keep the `memory/` index within its size limit as it accumulates
+- `/assistant` — the default operating mode: how Claude behaves in this project by default
+
+## Find what you need
+
+Organized by what you're trying to do, not by folder — each row links to the doc written for that specific need (a tutorial, a how-to, a reference, or an explanation; see `context/about-these-docs.md` for why the docs are split this way).
+
+| You want to… | Go to |
 |---|---|
-| `CLAUDE.md` | **The keystone** — the schema that turns Claude Code into a disciplined wiki maintainer (page formats, conventions, the three operations: ingest / query / lint) |
-| `NORTHSTAR.md` | Your purpose statement — written by `/setup-brain` from your answers. Never met a "Northstar"? The file explains the concept and ships the second brain's own as the worked example |
-| `context/` | The understanding: why this works (`why-a-second-brain.md`), the full build manual (`how-to-build.md`), which memory architecture fits you (`the-6-levels.md`), which Claude model for which job (`model-routing.md`), the automation layer (`loops.md`), and the per-service data-export handout |
-| `constitution/` | What a constitution is + the second brain's own six rules (`README.md`), how the assistant behaves (`assistant-constitution.md`), how it thinks (`epistemic-layer.md` — 11 reasoning moves), how it verifies (`verification.md`) |
-| `.claude/skills/` | The workflows as callable commands: `/setup-brain`, `/ingest-source`, `/session-start`, `/wiki-maintenance`, `/wiki-lint`, `/survey-sources`, `/retro`, `/memory-compact`, `/assistant` |
-| `wiki/` | Your brain-to-be: Topics, Entities, Projects, Sources, Synthesis, Personal, Journal, Tasks (+ `_schema.md`, `_log.md`) |
-| `raw/` | Your originals — immutable, **gitignored by default** so personal data never gets pushed anywhere |
-| `scripts/` | Parsers for common export formats (Claude, Grok, Google Keep, NotebookLM) |
-| `memory/` | The assistant's behavioral memory — lessons it learns about working with you |
+| Understand *why* this works | `context/why-a-second-brain.md`, `context/the-6-levels.md`, the `wiki/Topics/` seed pages |
+| Set up your brain | `/setup-brain`, `context/export-handout.md` |
+| Get data in from outside sources (Google Docs/Drive/Gmail/Calendar, Claude/ChatGPT/Grok exports, live connectors) | `context/connecting-outside-sources.md`, `context/how-to-build.md` |
+| Automate the maintenance loops | `context/loops.md`, `context/model-routing.md` |
+| Use external tools, CLIs, and model APIs safely | `context/external-tools-and-apis.md` |
+| Build and deploy software projects from your brain | `context/building-software-projects.md` |
+| Keep the brain healthy over time | `/wiki-maintenance`, `/wiki-lint`, `/retro`, `/memory-compact`, `context/memory-compaction.md` |
+| Understand how these docs themselves are organized | `context/about-these-docs.md` |
 
 ## The honest expectations
 
@@ -43,3 +93,5 @@ The setup is deliberately **flipped from how most tools onboard you**: instead o
 ## Fork it, improve it
 
 This kit is a living template. Issues and PRs welcome — especially new export parsers and schema improvements.
+
+**Found a gap?** If you hit a question these docs didn't answer, open an issue rather than routing around it silently. The docs are meant to learn the same way the wiki does: a repeated question is a signal, and maintainers fold it back in so the next person doesn't hit the same wall. See `context/about-these-docs.md` for the full discipline this runs on.
