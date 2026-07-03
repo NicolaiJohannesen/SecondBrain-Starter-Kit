@@ -80,7 +80,7 @@ Organized by what you're trying to do, not by folder — each row links to the d
 | Get data in from outside sources (Google Docs/Drive/Gmail/Calendar, Claude/ChatGPT/Grok exports, live connectors) | `context/connecting-outside-sources.md`, `context/how-to-build.md` |
 | Automate the maintenance loops | `context/loops.md`, `context/model-routing.md` |
 | Use external tools, CLIs, and model APIs safely | `context/external-tools-and-apis.md` |
-| Build and deploy software projects from your brain | `context/building-software-projects.md` |
+| Build and deploy software projects from your brain | `context/building-software-projects.md`, `context/deploying-to-cloudflare.md` |
 | Keep the brain healthy over time | `/wiki-maintenance`, `/wiki-lint`, `/retro`, `/memory-compact`, `context/memory-compaction.md` |
 | Understand how these docs themselves are organized | `context/about-these-docs.md` |
 

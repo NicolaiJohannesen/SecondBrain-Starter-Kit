@@ -39,6 +39,8 @@ The brain repo stays **private** — it's your life. Project repos can be public
 
 Recommendation shape: static and repo-native → GitHub Pages. Anything that needs more than static hosting (functions, storage, a database) → Cloudflare Pages. Next.js specifically → Vercel. Re-verify limits before committing to one — free-tier terms move faster than this document does.
 
+Step-by-step Cloudflare setup — project creation, wrangler, secrets, `_headers`/`_redirects`, custom domains, the migration runbook, and the mistakes list: [deploying-to-cloudflare.md](deploying-to-cloudflare.md).
+
 ## Ship propagation
 
 The principle worth stealing regardless of stack: **a ship isn't done when the deploy lands.** Every surface that describes the project — its wiki page, the README, any status line elsewhere — updates to match ground truth once the deploy is live. And **ground truth is the live deployed thing, never the docs describing it** — corrections flow one direction, live state to documentation, never the reverse. A quick grep for old version strings across the project's surfaces is a cheap way to prove none of them are still making a current-state claim that's gone stale.
