@@ -125,6 +125,30 @@ This is roughly half an hour of work on most contested questions. Most people do
 
 **The hard part isn't the moves** — it's being willing to discover that you were wrong about something you've already committed to. The toolkit doesn't fix that; it just makes the discovery cheaper, faster, and lower-stakes when you do it privately with an LLM before you've committed.
 
+## When to fire which move — the trigger map
+
+A move that isn't tied to a moment gets forgotten. This index is organized by *trigger* — the situation you're in — rather than by move number:
+
+| When… | Fire |
+|---|---|
+| **A claim will carry weight** (a statistic, a named study, an attributed quote, a fact your conclusion rests on) | **Verify (#7)** — check it against a specific source before it lands as fact. Two passes on the biggest ones: does the source exist as cited, AND does it actually support the claim as framed. |
+| **A question is genuinely contested** (thoughtful people from different traditions would frame it differently) | **Steelman ALL sides (#3) before red-teaming any (#4)** — build each position's strongest form first, then attack. Attacking before steelmanning produces a takedown of a position nobody holds. |
+| **You notice you agree with one side** | Apply the toolkit **harder, not softer** — sympathy is where motivated reasoning hides. Run **symmetric application (#8)**: would this evidence convince you if it pointed the other way? |
+| **You're about to form a conclusion** | Name your **falsifier (#11)** first — what evidence would change your mind? A position with no falsifier is an identity, not a conclusion. |
+| **An argument feels persuasive but slippery** | **Assumption archaeology (#5)** — surface the unnamed premise; that's usually where the real disagreement lives. Then **definitional clarity (#6)** if a key term is doing hidden work. |
+| **A claim is abstract or grand** | **Specificity demand (#10)** — force it to a concrete instance, a number, a prediction. |
+| **Moral language is doing the arguing** | **Strip-and-check (#9)** — remove the loaded words and see if the recommendation still follows from the structural facts. |
+| **You're researching with an AI** | **Socratic method (#2)** — pointed questions one at a time force retrieval over generation. And if something feels off but you can't say what, *say that* — articulate the partial intuition and let the AI work backward to what triggered it. |
+| **You're planning a project or commitment** | **The Five W's** — Who (is this for) · What (exactly is the deliverable) · When (by, and what sets the deadline) · Where (does it land — channel, place) · Why (does it matter — the load-bearing one) · plus How (the method). A plan that can't answer all six isn't a plan yet; the gaps are where it will fail. |
+| **Something broke** | Confirm it's actually an error (fixing a non-error is its own mistake) → reproduce it → fix the **root cause**, not the symptom → make the recurrence *structurally impossible* (a check, a rule, a gate), not "be more careful." |
+| **The same kind of thing broke twice** | Stop patching instances — the second occurrence is a design smell. Extract the knowledge into one place every path must consult, and guard the bypass. |
+| **You're not sure how to proceed** | Go *down*, not sideways — drop to first principles and ask what is actually fundamental here, rather than reaching for the nearest clever-looking move. |
+| **Complexity is compounding** | Stop and surface it — "this is spiraling; keep going or simplify?" beats pushing through. |
+| **You're recording a conclusion** | Document the **reasoning**, not just the verdict — the facts, the chain, then the conclusion — so a future reader (including future you) can re-derive it instead of taking it on authority. Distinguish know / infer / guess. |
+| **You're judging a past decision** | Separate the decision from the outcome — judge the process by what was knowable at the time, not by how it landed. |
+
+**And when NOT to fire the heavy moves**: the full stack costs real time. Settled facts, matters of taste, low-stakes choices, and things a two-minute lookup resolves don't need a steelman panel. Proportionality is part of the discipline — the toolkit is for claims that are contested *and* consequential.
+
 ## Best use cases — and where it's overkill
 
 Use the stack on contested, consequential questions where being wrong has a cost: investment theses, medical decisions, history, policy, any *"is this true, and what should I do about it"* question.
