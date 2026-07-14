@@ -6,6 +6,12 @@ A personal knowledge base (Obsidian-compatible vault) maintained by Claude Code.
 
 The full statement of who this is for, what it must do well, and what "done" looks like at 30 days lives in [NORTHSTAR.md](NORTHSTAR.md) — read it once per session if it's been a while since the last one. This file is the operating schema; NORTHSTAR.md is the direction.
 
+## Private-Forever (read every session — this file, not just NORTHSTAR.md)
+
+{{PRIVACY_BOUNDARIES}}
+
+This is the SAME boundary as [NORTHSTAR.md § What is private-forever](NORTHSTAR.md#what-is-private-forever) — restated here, not re-decided here, because this file gets read every session and NORTHSTAR.md only "once in a while." If the two ever disagree, NORTHSTAR.md is canonical and this section is stale — fix this one to match. Anything in scope here stays in `raw/` at most and never gets synthesized into a wiki page, even in general terms.
+
 ## Project Structure
 
 ```

@@ -18,7 +18,14 @@ The setup is deliberately **flipped from how most tools onboard you**: instead o
    - **Already on your machine** — old notes folders, an Obsidian vault, previously downloaded exports → drop copies into `raw/inbox/`.
    - **Live connectors** — connect Google Drive / Calendar / Gmail (claude.ai → Settings → Connectors) so calendar, email, and your Google Docs feed the brain continuously. These are the only sources that stay live; everything else is periodic re-export.
    - **Batch exports** — request the highest-density ones today: your AI conversations (Claude, ChatGPT, Grok), Google Takeout (Keep / Calendar / Mail / Photos), your notes apps, Apple Health, LinkedIn, the Meta family, X, Reddit, Kindle… Per-service menu paths and formats: [`context/export-handout.md`](context/export-handout.md). **The complete territory** — every social network, every LLM provider, the full Google catalog, fitness, commerce, plus the GDPR letter that works when a service has no export button — is [`context/data-census.md`](context/data-census.md).
-4. **Open Claude Code in the folder and run `/setup-brain`.** It reads whatever data is already reachable, drafts a picture of who you are and what you work on, and asks you to **confirm-and-correct** — plus the few questions data can't answer (what you want the brain to *do*, and what is private-forever, which is always yours to state explicitly). From your answers it writes your `NORTHSTAR.md` and personalizes the schema. Full ingestion only starts after this — the schema shapes what compilation produces.
+4. **Open Claude Code in the folder and send this as your first message** (typing your own name here isn't ceremony — it's the first data point the interview uses, and an explicit ask is more reliable than hoping Claude notices the empty wiki on its own):
+
+   ```
+   Hello — my name is [YOUR NAME]. I just cloned the Second Brain Starter Kit
+   and I'm ready to set up my second brain. Please run /setup-brain.
+   ```
+
+   It reads whatever data is already reachable, drafts a picture of who you are and what you work on, and asks you to **confirm-and-correct** — plus the few questions data can't answer (what you want the brain to *do*, and what is private-forever, which is always yours to state explicitly). From your answers it writes your `NORTHSTAR.md` and personalizes the schema. Full ingestion only starts after this — the schema shapes what compilation produces.
 5. **As exports arrive, drop them into `raw/inbox/` and run `/ingest-source`.** Claude reads each source, writes/updates wiki pages, cross-links, logs, and files the original away.
 6. From then on: ask questions (good answers get filed back as pages), run `/wiki-maintenance` at session end, `/wiki-lint` every 5–10 sessions, `/retro` to make the system improve itself.
 

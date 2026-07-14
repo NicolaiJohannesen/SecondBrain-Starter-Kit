@@ -20,17 +20,19 @@ ls -la
 git status 2>/dev/null || echo "no git repo yet"
 ```
 
-Confirm `raw/inbox/`, `raw/ingested/topic-sources/`, `wiki/{Topics,Entities,Projects,Sources,Synthesis,Personal,Journal,Tasks}/`, `memory/`, `constitution/`, `context/` all exist. If any are missing, create them. If `git status` fails, run `git init` and commit the bare skeleton — git is the reversibility layer for everything that follows.
+Confirm `raw/inbox/`, `raw/ingested/topic-sources/`, `wiki/{Topics,Entities,Projects,Sources,Synthesis,Personal,Journal,Tasks}/`, `memory/`, `constitution/`, `context/` all exist. If any are missing, create them. **If `git status` fails, OR the repo exists but has zero commits, run `git init` (if needed) and commit the bare skeleton** — git is the reversibility layer for everything that follows, and a repo with no history is functionally the same as no repo.
 
 ### Step 1 — Get the system access to the original data (the first real step)
 
 Tell the user what you're doing: *"Before I ask you anything about yourself, I want access to your original data — your AI conversation history, notes, calendar, email. I'll learn most of who you are from that, and then I only need you to correct me and fill the gaps. Here's how to get me each source."*
 
+**Say the trade-off out loud, before asking for a single export**: *"You can leave out anything you don't want in here — nothing is mandatory, and you can always add more later. But the more you bring together, the more useful this actually gets — a brain that only sees a slice of you gives you a slice of the value. One honest caveat: consolidating everything means feeding it through an AI session to get processed, so be deliberate about what you include, especially anything genuinely sensitive — that's what Step 3's private-forever question is for."* Say this once, plainly, before the lanes below — not as a legal disclaimer, but so the user makes an informed choice about how much to bring rather than discovering the trade-off midway through.
+
 Work through access in three lanes, most-immediate first:
 
 1. **Already on this machine** — existing notes folders (Obsidian vaults, Notion exports, a `Documents/notes/` directory), browser-history SQLite files, anything the user can point at right now. Ask: *"Is there anything already on this machine I should read — notes, an old vault, exports you've downloaded before?"* Copy (never move) anything offered into `raw/inbox/`.
 2. **Live connectors** — if this Claude has Google Drive / Calendar / Gmail connectors available (claude.ai → Settings → Connectors), walk the user through connecting them. These are the only sources that stay *live* rather than batch — calendar and email then feed the brain continuously without re-exports.
-3. **Batch exports** — walk `context/export-handout.md` with the user source by source (Claude, ChatGPT, Grok, Google Takeout for Keep/Calendar/Mail, Apple Health, X, Reddit, Kindle…), and have them **submit the requests in this session, today**. The reason is structural: exports take hours-to-days to arrive and most download links die in 24–48 hours. The requests are the long pole of the whole setup — start them first, and everything else happens while they're in flight. Tell the user which sources you'd prioritize for *them* and why, as it becomes clear what kind of brain this is.
+3. **Batch exports** — walk `context/export-handout.md` with the user source by source, and ask the open-ended question explicitly rather than relying on memory of a short list: *"What else do you have — Notion or another note-taking app, LinkedIn, Google Drive, anything in Microsoft/OneDrive, industry-specific tools?"* The complete territory (every social network, every LLM provider, the full Google catalog, fitness, commerce, and the legal DSAR lever for services with no export button) is `context/data-census.md` — walk it with the user rather than defaulting to just the big four AI providers. Have them **submit the requests in this session, today**. The reason is structural: exports take hours-to-days to arrive and most download links die in 24–48 hours (some services are as short as 72 hours). The requests are the long pole of the whole setup — start them first, and everything else happens while they're in flight. Tell the user which sources you'd prioritize for *them* and why, as it becomes clear what kind of brain this is.
 
 Nothing here blocks: whatever data is reachable *now* feeds Step 2 immediately; the rest arrives over the coming days into `raw/inbox/`.
 
@@ -60,9 +62,11 @@ Most new users have never met either concept. Explain both using the shipped wor
 
 Write `NORTHSTAR.md` from the confirmed picture + the three answers. One page: who this is for, what the brain should do, the chosen level and why, and the private-forever boundary stated as a hard rule.
 
-### Step 5 — Fill CLAUDE.md placeholders
+### Step 5 — Fill every remaining placeholder, not just CLAUDE.md's
 
-`CLAUDE.md` is the schema every session reads first. Fill `{{USER_NAME}}`, `{{PURPOSE_SUMMARY}}`, and the private-forever categories. An unfilled schema is the single biggest cause of a second brain drifting into an inconsistent mess — every session re-derives its own conventions instead of reading one shared source.
+`CLAUDE.md` is the schema every session reads first. Fill `{{USER_NAME}}`, `{{PURPOSE_SUMMARY}}`, and `{{PRIVACY_BOUNDARIES}}` (its own `## Private-Forever` section — the same categories as NORTHSTAR.md's, restated there on purpose, because CLAUDE.md is read every session and NORTHSTAR.md only "once in a while." Getting this section wrong or skipping it is the single failure mode this step exists to prevent — check it, don't just assume the placeholder is decorative).
+
+Then grep the rest of the repo for any other unfilled `{{...}}` token before moving on — `wiki/_schema.md` and other files may carry their own. An unfilled placeholder anywhere is the single biggest cause of a second brain drifting into an inconsistent mess — every session re-derives its own conventions instead of reading one shared, fully-completed source.
 
 ### Step 6 — Seed the first profile page
 
@@ -84,6 +88,7 @@ Be honest about the curve: the first month is mostly investment — field experi
 ## Reference
 
 `context/export-handout.md` — the per-service access instructions Step 1 walks through.
+`context/data-census.md` — the complete data-source territory (every social network, every LLM provider, the full Google catalog, fitness, commerce, the DSAR lever) — walk this, not just the short list, when asking "what else do you have."
 `context/why-a-second-brain.md` — the architecture and failure modes this setup guards against.
 `context/the-6-levels.md` — the memory-level menu in Step 3.
 `wiki/_schema.md` — frontmatter and page-type conventions for Step 6.

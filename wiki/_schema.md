@@ -6,7 +6,7 @@ This file defines how the wiki works. Read it before processing any source.
 
 This is a personal knowledge base built on the Karpathy LLM-wiki pattern. It's an Obsidian vault where each page is a persistent, compounding artifact. Synthesis happens once, at ingest time — not re-derived on every query.
 
-The wiki belongs to {{USER_NAME}}. Content spans whatever domains matter to that person — see NORTHSTAR.md for the current scope.
+The wiki belongs to whoever [CLAUDE.md](../CLAUDE.md)'s title names (filled at setup). Content spans whatever domains matter to that person — see [NORTHSTAR.md](../NORTHSTAR.md) for the current scope.
 
 ## Vault Structure
 
@@ -84,18 +84,20 @@ Never write into the wiki: passwords, PINs, or credentials; API keys or secrets;
 
 ## Quality Standards — per page type
 
-| Criterion | Topic | Synthesis | Entity | Project | Source |
-|-----------|-------|-----------|--------|---------|--------|
-| **Clarity** — the reader wrestles with the idea, not the words | ✓ | ✓ | ✓ | ✓ | ✓ |
-| **Vivid mapping** — abstract ideas made concrete via examples | ✓ | ✓ | ✓ | — | — |
-| **Productive struggle** — one moment the reader must think before the answer arrives | ✓ | ✓ | — | — | — |
-| **Boundary conditions** — names where the model breaks or doesn't apply | ✓ | ✓ | ✓ | — | — |
-| **Layered depth** — surface takeaway for skimmers, deeper structure for rereaders | ✓ | ✓ | — | ✓ | — |
-| **Load-bearing insight** — one central reframe at the structural climax, not buried | ✓ | ✓ | — | ✓ | — |
+| Criterion | Topic | Synthesis | Entity | Project | Source | Personal |
+|-----------|-------|-----------|--------|---------|--------|----------|
+| **Clarity** — the reader wrestles with the idea, not the words | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| **Vivid mapping** — abstract ideas made concrete via examples | ✓ | ✓ | ✓ | — | — | — |
+| **Productive struggle** — one moment the reader must think before the answer arrives | ✓ | ✓ | — | — | — | — |
+| **Boundary conditions** — names where the model breaks or doesn't apply | ✓ | ✓ | ✓ | — | — | — |
+| **Layered depth** — surface takeaway for skimmers, deeper structure for rereaders | ✓ | ✓ | — | ✓ | — | — |
+| **Load-bearing insight** — one central reframe at the structural climax, not buried | ✓ | ✓ | — | ✓ | — | — |
 
 **Topic and Synthesis pages** need all of it — a page that only defines a term has failed; it should build a mental model the reader didn't have before and can use 30 days later.
 
 **Entity pages** need clarity + vivid mapping + boundary conditions. Describe the person, org, or place concretely; name where a characterization breaks. Avoid hagiography.
+
+**Personal pages** need clarity only, same bar as Source pages — they're a record (who you are, what you're doing, what matters right now), not an argument. Deliberately thin at first; it thickens as ingestion adds to it. The one thing to get right that a Topic page doesn't need: state the private-forever boundary or point at where it's stated, so a page that's shown to someone else can be checked at a glance.
 
 **Project pages** need the single most important insight findable at a glance, plus layered depth for someone going deeper.
 
