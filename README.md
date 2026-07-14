@@ -117,6 +117,6 @@ The background for all of this is the [Culture of Learning](wiki/Topics/Culture%
 
 ## Fork it, improve it
 
-This kit is a living template. Issues and PRs welcome — especially new export parsers and schema improvements.
+This kit is a living template. Issues and PRs welcome — especially new export parsers and schema improvements. See [CHANGELOG.md](CHANGELOG.md) for what's shipped and when.
 
 **Found a gap?** If you hit a question these docs didn't answer, open an issue rather than routing around it silently. The docs are meant to learn the same way the wiki does: a repeated question is a signal, and maintainers fold it back in so the next person doesn't hit the same wall. See `context/about-these-docs.md` for the full discipline this runs on.
