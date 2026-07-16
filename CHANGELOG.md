@@ -2,6 +2,11 @@
 
 All notable changes to this kit are recorded here. Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
+## Unreleased
+
+### Changed
+- Quickstart step 3 ("get your data flowing") rewrote as one clear action (request your AI-conversation export right now, with the exact click path) instead of a three-lane taxonomy dumped in the reader's face — the full source list stays one hop away in `context/export-handout.md` / `context/data-census.md`, where it belongs. Step 4 similarly trimmed — the instruction leads, the explanation follows in one sentence instead of a parenthetical before it.
+
 ## 0.2.0 — 2026-07-14
 
 **Cold-start validated.** A blind dry-run (a fresh agent with zero memory of the authoring session, playing a brand-new user against a scratch clone) proved the `/setup-brain` data-first flow works end-to-end — and found one real bug the authoring session's own re-reads had missed.

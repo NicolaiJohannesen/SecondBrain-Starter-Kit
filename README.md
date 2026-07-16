@@ -14,18 +14,17 @@ The setup is deliberately **flipped from how most tools onboard you**: instead o
 
 1. **Prerequisites**: [Claude Code](https://claude.com/claude-code) installed and signed in; git; optionally [Obsidian](https://obsidian.md) pointed at `wiki/` as your reading/graph surface.
 2. **Clone this kit** (or Code → Download ZIP) into a folder that will BE your second brain — e.g. `~/brain/`.
-3. **Get your data flowing — before anything else.** This is the long pole of the whole setup: the big exports take hours-to-days to prepare (a few are instant), and once ready, the download links die fast — LinkedIn gives you 72 hours, Meta and TikTok 4 days, Garmin 3 days. So the requests go in first, everything else happens while they're in flight, and **when the "ready" notification lands you download the same day** (calendar it — an expired link means re-requesting and re-waiting). Three lanes:
-   - **Already on your machine** — old notes folders, an Obsidian vault, previously downloaded exports → drop copies into `raw/inbox/`.
-   - **Live connectors** — connect Google Drive / Calendar / Gmail (claude.ai → Settings → Connectors) so calendar, email, and your Google Docs feed the brain continuously. These are the only sources that stay live; everything else is periodic re-export.
-   - **Batch exports** — request the highest-density ones today: your AI conversations (Claude, ChatGPT, Grok), Google Takeout (Keep / Calendar / Mail / Photos), your notes apps, Apple Health, LinkedIn, the Meta family, X, Reddit, Kindle… Per-service menu paths and formats: [`context/export-handout.md`](context/export-handout.md). **The complete territory** — every social network, every LLM provider, the full Google catalog, fitness, commerce, plus the GDPR letter that works when a service has no export button — is [`context/data-census.md`](context/data-census.md).
-4. **Open Claude Code in the folder and send this as your first message** (typing your own name here isn't ceremony — it's the first data point the interview uses, and an explicit ask is more reliable than hoping Claude notices the empty wiki on its own):
+3. **Right now, request your AI conversation export** — whichever you actually use (Claude, ChatGPT, or Grok). Do this before anything else in this list, because it's the single densest source this brain has and also the slowest to arrive. For Claude: claude.ai → click your initials (bottom-left) → Settings → Privacy → **Export data**. A download link comes by email — **it expires in 24 hours**, so download it the same day it arrives, don't leave it for later.
+
+   Once that request is in, work through whatever else you have — old notes on this machine, live Google connectors, LinkedIn, Google Takeout, and everything else — at your own pace using [`context/export-handout.md`](context/export-handout.md) (the quick per-service list) and [`context/data-census.md`](context/data-census.md) (every source that exists, plus the legal letter for services with no export button).
+4. **Open Claude Code in the folder and send this as your first message:**
 
    ```
    Hello — my name is [YOUR NAME]. I just cloned the Second Brain Starter Kit
    and I'm ready to set up my second brain. Please run /setup-brain.
    ```
 
-   It reads whatever data is already reachable, drafts a picture of who you are and what you work on, and asks you to **confirm-and-correct** — plus the few questions data can't answer (what you want the brain to *do*, and what is private-forever, which is always yours to state explicitly). From your answers it writes your `NORTHSTAR.md` and personalizes the schema. Full ingestion only starts after this — the schema shapes what compilation produces.
+   It reads whatever data is already reachable, drafts a picture of who you are, and asks you to **confirm-and-correct** — plus the two things only you can answer (what you want the brain to *do*, and what's private-forever). From that it writes your `NORTHSTAR.md`.
 5. **As exports arrive, drop them into `raw/inbox/` and run `/ingest-source`.** Claude reads each source, writes/updates wiki pages, cross-links, logs, and files the original away.
 6. From then on: ask questions (good answers get filed back as pages), run `/wiki-maintenance` at session end, `/wiki-lint` every 5–10 sessions, `/retro` to make the system improve itself.
 
