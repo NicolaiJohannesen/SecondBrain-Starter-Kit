@@ -2,15 +2,11 @@
 
 None of this is required. The kit works fully without any of it. This is a reference for optional tooling that plugs in around the brain once it's running — organized by the question each one answers.
 
-## Obsidian skills — if you're viewing the wiki in Obsidian
+## Obsidian skills — background reading, not a setup step
 
-If you're using [Obsidian](https://obsidian.md) to browse `wiki/` as a graph (the Quickstart's optional last step), three small skills from [kepano/obsidian-skills](https://github.com/kepano/obsidian-skills) (MIT) are worth vendoring into `.claude/skills/` so Claude authors Obsidian-flavored content correctly instead of guessing at the syntax:
+This is just context for later, not something to act on now. If you use [Obsidian](https://obsidian.md) to browse `wiki/` as a graph, you might eventually notice Claude write a callout, a block reference, or a `.base`/`.canvas` file in a way that doesn't quite match Obsidian's actual syntax — plain markdown doesn't fully cover Obsidian's own format. If that ever bothers you enough to be worth five minutes, three small skills exist for exactly this: [kepano/obsidian-skills](https://github.com/kepano/obsidian-skills) (MIT) — `obsidian-markdown` (callouts, embeds, block references, inline comments), `obsidian-bases` (`.base` database-style views over frontmatter), and `json-canvas` (`.canvas` mind-maps/flowcharts). Nothing breaks without them; they just make Obsidian-specific syntax more precise when Claude writes it.
 
-- **`obsidian-markdown`** — Obsidian Flavored Markdown: callouts, embeds, block references (`^id`), inline comments (`%%...%%`).
-- **`obsidian-bases`** — `.base` files, Obsidian's database-style views over frontmatter. Useful once the wiki has enough pages that a filtered/sorted view (recently updated, orphans, by tag) beats a hand-maintained index page.
-- **`json-canvas`** — `.canvas` files for visual mind-maps/flowcharts, if you use those in Obsidian.
-
-Skipped from the same repo, and why: `defuddle` (weaker than a dedicated fetch script for pulling readable text from web pages) and `obsidian-cli` (only useful if you're developing an Obsidian plugin, not for normal wiki use). Two more from the same repo exist and didn't change as of this writing — check the repo directly if it's been a while.
+The same repo also has `defuddle` and `obsidian-cli` — narrower tools (a web-page-text extractor, and an Obsidian-plugin-development CLI) that most people building a second brain won't need.
 
 ## CLI options — other agentic CLIs, if Claude Code alone isn't enough
 

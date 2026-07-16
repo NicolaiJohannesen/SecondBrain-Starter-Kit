@@ -4,6 +4,9 @@ All notable changes to this kit are recorded here. Format loosely follows [Keep 
 
 ## Unreleased
 
+### Changed
+- **Reframed the Obsidian-skills section of `context/ancillary-options.md` as pure background reading, not an implied setup step.** It previously said the three skills were "worth vendoring" — read as a mild recommendation to go do something. Rewritten to make explicit this is context for later, optional, five-minutes-if-it-ever-bothers-you — nothing here should read as "install this now."
+
 ### Added
 - **`context/ancillary-options.md`** — optional tooling to extend the brain once it's running: Obsidian-format skills for anyone browsing the wiki in Obsidian, a cross-vendor agentic-CLI reference (orchestrator + specialist-subprocess pattern), the MCP-server safety question (can it search-only, or can it also transact) with a worked travel example, and a hardware-aware speech-to-text decision guide (Apple Silicon → local Whisper is fine; older Intel Macs → cloud dictation apps are strictly better on both accuracy and CPU cost, not just more convenient). Nothing here is required; the kit works fully without any of it.
 
