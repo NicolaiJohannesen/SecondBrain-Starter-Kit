@@ -12,8 +12,8 @@ The architecture is the LLM-wiki pattern ([Karpathy, April 2026](https://gist.gi
 
 The setup is deliberately **flipped from how most tools onboard you**: instead of filling in a form about yourself, you first give the system your original data — then it reads that data, tells you what it sees, and asks you only what the data can't answer.
 
-1. **Prerequisites**: [Claude Code](https://claude.com/claude-code) installed and signed in; git; optionally [Obsidian](https://obsidian.md) pointed at `wiki/` as your reading/graph surface.
-2. **Download or clone this kit** (Code → Download ZIP, or `git clone`) into the folder that will BE your second brain — e.g. `~/brain/`.
+1. **Get [Claude Code](https://claude.com/claude-code) installed and signed in.** That's the only thing you need before starting — everything else here can wait until it's actually relevant.
+2. **Download this kit** (Code → Download ZIP) into the folder that will BE your second brain — e.g. `~/brain/`. Comfortable with git? `git clone` works the same way — useful later for tracking changes and pushing to your own remote, not something you need to know today.
 3. **Copy whatever data you already have into `raw/inbox/` — before you open Claude Code at all.** Old exports, notes, a folder of files — drop them in as they are. **Zip files are fine to drop in directly, no need to unzip first.** Don't have anything on hand yet? That's fine too, go get what you can — the per-service how-to is reference material, not something to read now: [`context/export-handout.md`](context/export-handout.md) (quick list) and [`context/data-census.md`](context/data-census.md) (the complete territory, every service). Come back and copy in whatever you get.
 4. **Open Claude Code in the folder and send this as your first message:**
 
@@ -25,6 +25,8 @@ The setup is deliberately **flipped from how most tools onboard you**: instead o
    It reads what's already in the inbox, drafts a picture of who you are and what this brain should focus on, and asks you to **confirm-and-correct** that — plus the one thing it can't infer for you: what's private-forever. From there it writes your `NORTHSTAR.md` and starts ingesting what's in the inbox.
 5. **From here it runs largely on its own.** It shouldn't need to stop and ask you things that are already answered in its own documentation — only genuine judgment calls (an ambiguous private-forever question, a real contradiction) surface to you. As more exports arrive over the following days, drop them into `raw/inbox/` and say "ingest this" (or run `/ingest-source`) whenever you're ready.
 6. Ongoing habits: ask questions (good answers get filed back as pages), `/wiki-maintenance` at session end, `/wiki-lint` every 5–10 sessions, `/retro` to make the system improve itself.
+
+Whenever you want a visual way to browse it — not required, just nice to have — point [Obsidian](https://obsidian.md) at the `wiki/` folder and read it as a graph.
 
 ## The structure — what every folder is
 
