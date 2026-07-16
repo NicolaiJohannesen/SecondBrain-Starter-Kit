@@ -1,15 +1,17 @@
 ---
 name: setup-brain
-description: First-run bootstrap for a new second brain. Use when the kit is freshly cloned and NORTHSTAR.md doesn't exist yet, when the user asks to "set up my second brain" / "get started" / runs /setup-brain, or when a session opens against an empty wiki/ directory. Data-first flow — help the user get the system access to their original data (exports, connectors, local folders), interrogate that data to learn who they are, then confirm-and-correct with them and ask only what the data can't answer. Writes NORTHSTAR.md and CLAUDE.md, seeds a first profile page. Must complete before any full ingestion — it shapes the schema everything else compiles against.
+description: First-run bootstrap for a new second brain. Use when the kit is freshly cloned and NORTHSTAR.md doesn't exist yet, when the user asks to "set up my second brain" / "get started" / runs /setup-brain, or when a session opens against an empty wiki/ directory. Data-first flow — the user has already copied whatever data they have into raw/inbox/ before running this (the README tells them to); read what's there, interrogate it, confirm-and-correct with the user, and ask only the one thing that can't be inferred (what's private-forever). Writes NORTHSTAR.md and CLAUDE.md, seeds a first profile page, then offers to chain straight into ingesting the inbox. Must complete before any full ingestion — it shapes the schema everything else compiles against.
 ---
 
 # Setup Brain
 
 The one-time bootstrap that turns a freshly cloned kit into a system shaped around one specific person. Nothing else in the kit works well until this runs — `/ingest-source` needs a schema to write into, `/session-start` needs a NORTHSTAR.md to read.
 
-**The flow is data-first, on purpose.** The old way — interview the user with a form, then go find data — is backwards. This system's whole premise is that the data already knows most of the answers. So: **(1) get access to the original data, (2) interrogate it, (3) ask the user only what the data can't answer, and confirm what it can.** The user corrects a concrete picture instead of filling in blanks.
+**The flow is data-first, on purpose, and the data comes first in time too.** The README tells the user to copy whatever they already have into `raw/inbox/` *before* they ever open Claude Code — so by the time this skill runs, there is usually real material sitting there already, not a blank folder. Read it, draft from it, and confirm — don't ask questions the inbox can already answer.
 
-**Narrate your intent at every step.** Before each step, tell the user in one or two plain sentences *what you're trying to do and why* — "I'm asking for your Claude export because your conversation history is the densest record of how you think; once I can read it, I'll stop asking you questions it already answers." A user who knows what you're aiming at can help you get there — volunteer a folder you didn't know existed, warn you off a dead end, correct a wrong guess early. A silent setup wastes the person sitting right there.
+**Ask as little as possible.** Every question this skill asks is one the data genuinely can't answer. If a guess can be drafted from what's already in the inbox, draft it and put it in the confirm-and-correct pass — don't turn it into a separate question. In practice this means exactly one thing is ever asked as a standalone question: what's private-forever, because inferring a privacy boundary from someone's own data is backwards by construction. Everything else — what the brain should focus on, which delegation level fits — gets guessed from the data and folded into one combined confirmation.
+
+**Narrate your intent, briefly.** Before checking the inbox or writing anything, say in one sentence what you're about to do and why — not a lecture, just enough that the user can redirect you before you go the wrong way.
 
 ## Instructions
 
@@ -22,73 +24,78 @@ git status 2>/dev/null || echo "no git repo yet"
 
 Confirm `raw/inbox/`, `raw/ingested/topic-sources/`, `wiki/{Topics,Entities,Projects,Sources,Synthesis,Personal,Journal,Tasks}/`, `memory/`, `constitution/`, `context/` all exist. If any are missing, create them. **If `git status` fails, OR the repo exists but has zero commits, run `git init` (if needed) and commit the bare skeleton** — git is the reversibility layer for everything that follows, and a repo with no history is functionally the same as no repo.
 
-### Step 1 — Get the system access to the original data (the first real step)
+### Step 1 — Read what's already in the inbox
 
-Tell the user what you're doing: *"Before I ask you anything about yourself, I want access to your original data — your AI conversation history, notes, calendar, email. I'll learn most of who you are from that, and then I only need you to correct me and fill the gaps. Here's how to get me each source."*
+```bash
+ls -la raw/inbox/
+```
 
-**Say the trade-off out loud, before asking for a single export**: *"You can leave out anything you don't want in here — nothing is mandatory, and you can always add more later. But the more you bring together, the more useful this actually gets — a brain that only sees a slice of you gives you a slice of the value. One honest caveat: consolidating everything means feeding it through an AI session to get processed, so be deliberate about what you include, especially anything genuinely sensitive — that's what Step 3's private-forever question is for."* Say this once, plainly, before the lanes below — not as a legal disclaimer, but so the user makes an informed choice about how much to bring rather than discovering the trade-off midway through.
+The user was told to copy their data in before running this — check what's actually there first, rather than opening with questions. If the inbox has real content: say so plainly ("I can see you've already dropped in X — reading that now") and move straight to Step 2.
 
-Work through access in three lanes, most-immediate first:
+**If a file is an archive** (`.zip`, `.tar`, `.tar.gz`) — extract it in place before reading (`unzip`, `tar -xf`) rather than asking the user to unzip it themselves; that friction belongs to the system, not the person.
 
-1. **Already on this machine** — existing notes folders (Obsidian vaults, Notion exports, a `Documents/notes/` directory), browser-history SQLite files, anything the user can point at right now. Ask: *"Is there anything already on this machine I should read — notes, an old vault, exports you've downloaded before?"* Copy (never move) anything offered into `raw/inbox/`.
-2. **Live connectors** — if this Claude has Google Drive / Calendar / Gmail connectors available (claude.ai → Settings → Connectors), walk the user through connecting them. These are the only sources that stay *live* rather than batch — calendar and email then feed the brain continuously without re-exports.
-3. **Batch exports** — walk `context/export-handout.md` with the user source by source, and ask the open-ended question explicitly rather than relying on memory of a short list: *"What else do you have — Notion or another note-taking app, LinkedIn, Google Drive, anything in Microsoft/OneDrive, industry-specific tools?"* The complete territory (every social network, every LLM provider, the full Google catalog, fitness, commerce, and the legal DSAR lever for services with no export button) is `context/data-census.md` — walk it with the user rather than defaulting to just the big four AI providers. Have them **submit the requests in this session, today**. The reason is structural: exports take hours-to-days to arrive and most download links die in 24–48 hours (some services are as short as 72 hours). The requests are the long pole of the whole setup — start them first, and everything else happens while they're in flight. Tell the user which sources you'd prioritize for *them* and why, as it becomes clear what kind of brain this is.
+**If the inbox is empty or thin**, say so and offer the two ways to add more, briefly — this is now a secondary, ongoing action, not a blocking gate:
+- **Live connectors** (Google Drive / Calendar / Gmail via claude.ai → Settings → Connectors) — the only sources that stay continuously live.
+- **Batch exports** — point at `context/export-handout.md` (quick list) and `context/data-census.md` (the complete territory) as reference to go get more, whenever convenient. Mention the consolidation trade-off once, briefly, if it comes up: *"you can leave out anything you don't want here — the more you bring together the more useful this gets, and anything genuinely sensitive is what the private-forever question is for."*
 
-Nothing here blocks: whatever data is reachable *now* feeds Step 2 immediately; the rest arrives over the coming days into `raw/inbox/`.
+Either way, proceed to Step 2 with whatever is reachable right now — don't block on requests still in flight.
 
-### Step 2 — Interrogate the data
+### Step 2 — Interrogate the data and draft the whole picture
 
-Tell the user: *"Now I'm going to read what I can reach — titles and metadata first — and build a draft picture of who you are, what you work on, and what you care about. Then you correct it."*
+Tell the user: *"Reading what's here — titles and metadata first — to draft a picture of who you are, what this brain should focus on, and how it should be set up. Then you correct it."*
 
-Do a *light, local* pass over everything reachable — inbox contents, connected sources, pointed-at folders: conversation titles from AI exports (run the matching `scripts/parse_*.py` if the format fits), note titles, filenames, calendar-event patterns, the entities and topics that recur. From that, DRAFT the picture: who this person appears to be, what they seem to work on and care about, which data sources they demonstrably have, which tools they actually live in.
+Do a *light, local* pass over everything reachable: conversation titles from AI exports (run the matching `scripts/parse_*.py` if the format fits), note titles, filenames, calendar-event patterns, the entities and topics that recur. From that, draft the **whole picture in one pass**, not just who-they-are:
 
-Two hard boundaries: (1) **the scan stays shallow and local until the private-forever answer (Step 3) is on the record** — inferring a privacy boundary from the data is backwards. (2) **This drafts the Northstar; it does not ingest.** No wiki pages get written until setup is complete and `/ingest-source` runs under the finished schema.
+- who this person appears to be, what they work on, what they care about
+- **what this brain should likely focus on** — research depth, personal/life memory, business/project context, or a mix — inferred from what the data actually shows, not asked cold
+- **which level fits** (read `context/the-6-levels.md`) — default to Level 5 unless the data suggests otherwise (e.g. evidence of juggling several AI assistants → Level 6)
 
-If no data is reachable yet (requests in flight, nothing local), say so plainly and fall back to the interview below — noting setup can be re-run richer when the exports land.
+Two hard boundaries: (1) **the scan stays shallow and local until the private-forever answer (Step 3) is on the record.** (2) **This drafts the Northstar; it does not ingest.** No wiki pages get written until setup is complete and `/ingest-source` runs under the finished schema.
 
-### Step 3 — Confirm-and-correct, then ask only the gaps
+If nothing is reachable yet, say so and draft as little as honestly possible — most of Step 3 becomes direct questions in that case, which is expected and fine.
 
-Present the drafted picture and invite correction: *"Your data suggests you're X, working on Y and Z, living mostly in tools A and B — what's wrong or missing in that picture?"* People are far better at correcting a concrete draft than at answering abstract questions cold.
+### Step 3 — Confirm the whole draft in one pass, then ask the one thing that can't be inferred
 
-Then ask only what the data can't answer, one question at a time, each with its why:
+Present the **full draft** — who they are, what the brain should focus on, the level — as one combined picture: *"Your data suggests you're X, working on Y and Z, and this reads like a [research / business / life] brain at Level 5 — what's wrong or missing in that?"* One correction pass, not a sequence of separate questions.
 
-1. **What should this brain *do*?** Research depth (a thinking partner for hard problems) · personal/life memory (dates, people, decisions, health, money) · business/project context · all three. Decides the page taxonomy. The data shows what they *have*; only the user knows what they *want from it*.
-2. **How do you work across tools?** — confirm against the evidence; read `context/the-6-levels.md` first. Default recommendation: **Level 5** (this kit). Level 6 only for people actively juggling several AI assistants who need one memory layer under all of them.
-3. **What is private-forever?** ALWAYS asked explicitly, never inferred — health details, financial specifics, other people's words in messages, anything that must never leave `raw/` or be synthesized into a wiki page even in general terms. This becomes the redaction policy in `CLAUDE.md`, on the record before the first file is processed.
+Then ask exactly one explicit question, always, never inferred:
+
+**What is private-forever?** Health details, financial specifics, other people's words in messages, anything that must never leave `raw/` or be synthesized into a wiki page even in general terms. This becomes the redaction policy in `CLAUDE.md`, on the record before the first file is processed.
 
 ### Step 4 — Explain Northstar + constitution, then write NORTHSTAR.md
 
 Most new users have never met either concept. Explain both using the shipped worked examples — the "what a Northstar even is" section and the system's own Northstar in `NORTHSTAR.md`, and `constitution/README.md` for what a constitution is plus the second brain's own six rules. Their answers then *specialize* the system Northstar rather than starting from a blank page.
 
-Write `NORTHSTAR.md` from the confirmed picture + the three answers. One page: who this is for, what the brain should do, the chosen level and why, and the private-forever boundary stated as a hard rule.
+Write `NORTHSTAR.md` from the confirmed picture: who this is for, what the brain should do, the chosen level and why, and the private-forever boundary stated as a hard rule. Fill the Milestones section as-is from the template — it's not personalized, it's the same checklist for everyone.
 
 ### Step 5 — Fill every remaining placeholder, not just CLAUDE.md's
 
 `CLAUDE.md` is the schema every session reads first. Fill `{{USER_NAME}}`, `{{PURPOSE_SUMMARY}}`, and `{{PRIVACY_BOUNDARIES}}` (its own `## Private-Forever` section — the same categories as NORTHSTAR.md's, restated there on purpose, because CLAUDE.md is read every session and NORTHSTAR.md only "once in a while." Getting this section wrong or skipping it is the single failure mode this step exists to prevent — check it, don't just assume the placeholder is decorative).
 
-Then grep the rest of the repo for any other unfilled `{{...}}` token before moving on — `wiki/_schema.md` and other files may carry their own. An unfilled placeholder anywhere is the single biggest cause of a second brain drifting into an inconsistent mess — every session re-derives its own conventions instead of reading one shared, fully-completed source.
+Then grep the rest of the repo for any other unfilled `{{...}}` token before moving on. An unfilled placeholder anywhere is the single biggest cause of a second brain drifting into an inconsistent mess.
 
 ### Step 6 — Seed the first profile page
 
 Write `wiki/Personal/{Name}.md` per `wiki/_schema.md` (`type: personal`, `version: 1`, rich aliases) from what the data + confirmation surfaced. Deliberately thin; it thickens with ingestion. Its job today is to exist as the anchor page others link back to.
 
-### Step 7 — Explain the loop
+### Step 7 — Offer to keep going, right now, in the same session
 
-Close by explaining what happens next, plainly:
+If there's real, unprocessed content already sitting in `raw/inbox/` (there usually is, per Step 1), **offer to continue straight into ingesting it now** rather than ending the session and making the user come back and ask separately: *"There's still N files in the inbox — want me to start ingesting them now?"* If yes, run `/ingest-source` in a loop across the inbox in the same session, applying the "don't stop to ask" discipline in that skill's own instructions — this is the system doing what Step 2 of this skill promised: reading what the user brought and getting on with it, not requiring a second invocation to actually start.
 
-1. Exports keep landing in `raw/inbox/` over the coming days — that's normal and expected.
-2. `/ingest-source` (or dropping a file and saying "ingest this") processes each into `wiki/` — pages written or enriched, a source record, cross-links, a log line, the original filed as provenance.
-3. `/session-start` re-orients each future session from what's already built.
-4. `/wiki-maintenance` at the end of substantive sessions; `/wiki-lint` every 5–10 sessions; `/retro` to keep the system's own discipline improving.
+If the inbox is empty or the user wants to stop here, close by explaining what happens next, plainly:
 
-### The 30-day test
+1. As exports keep landing over the coming days, drop them into `raw/inbox/` and say "ingest this" (or run `/ingest-source`).
+2. `/session-start` re-orients each future session from what's already built.
+3. `/wiki-maintenance` at the end of substantive sessions; `/wiki-lint` every 5–10 sessions; `/retro` to keep the system's own discipline improving.
 
-Be honest about the curve: the first month is mostly investment — field experience says time-invested roughly equals time-saved at one month, compounding after (see `context/why-a-second-brain.md`). The test at 30 days: does a new session start *from* what's compiled, instead of you re-explaining the same background? If sessions still start from zero, ingest more before expecting compounding value.
+### Milestones, not a calendar
+
+Point the user at `NORTHSTAR.md`'s Milestones section rather than restating it here — progress is checked by what's actually happened (first real ingest, first re-use, first self-made connection, first maintenance catch), not by a day count. There is no "30-day test"; some builds hit these in a week, others take longer depending on how much comes in and how deep the domain is.
 
 ## Reference
 
-`context/export-handout.md` — the per-service access instructions Step 1 walks through.
-`context/data-census.md` — the complete data-source territory (every social network, every LLM provider, the full Google catalog, fitness, commerce, the DSAR lever) — walk this, not just the short list, when asking "what else do you have."
+`context/export-handout.md` — the per-service access instructions, for when the inbox needs more.
+`context/data-census.md` — the complete data-source territory — the reference to reach for on "what else do you have," not a script to read aloud.
 `context/why-a-second-brain.md` — the architecture and failure modes this setup guards against.
-`context/the-6-levels.md` — the memory-level menu in Step 3.
+`context/the-6-levels.md` — the memory-level menu for Step 2's draft.
 `wiki/_schema.md` — frontmatter and page-type conventions for Step 6.

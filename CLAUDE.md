@@ -4,7 +4,7 @@ A personal knowledge base (Obsidian-compatible vault) maintained by Claude Code.
 
 **Purpose**: {{PURPOSE_SUMMARY}}
 
-The full statement of who this is for, what it must do well, and what "done" looks like at 30 days lives in [NORTHSTAR.md](NORTHSTAR.md) — read it once per session if it's been a while since the last one. This file is the operating schema; NORTHSTAR.md is the direction.
+The full statement of who this is for, what it must do well, and the milestones that mark real progress lives in [NORTHSTAR.md](NORTHSTAR.md) — read it once per session if it's been a while since the last one. This file is the operating schema; NORTHSTAR.md is the direction.
 
 ## Private-Forever (read every session — this file, not just NORTHSTAR.md)
 

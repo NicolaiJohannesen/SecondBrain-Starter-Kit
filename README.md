@@ -8,15 +8,13 @@ The architecture is the LLM-wiki pattern ([Karpathy, April 2026](https://gist.gi
 
 **You own the artifact.** Plain markdown files, versioned with git, readable without any tool. No platform can reprice, lock, or delete your brain.
 
-## Quickstart (data first — 30 minutes of setup, exports arrive over days)
+## Quickstart
 
-The setup is deliberately **flipped from how most tools onboard you**: instead of filling in a form about yourself, you first get the system access to your original data — then it reads that data, tells you what it sees, and asks you only what the data can't answer. Throughout, it tells you what it's trying to do and why, so you can help it.
+The setup is deliberately **flipped from how most tools onboard you**: instead of filling in a form about yourself, you first give the system your original data — then it reads that data, tells you what it sees, and asks you only what the data can't answer.
 
 1. **Prerequisites**: [Claude Code](https://claude.com/claude-code) installed and signed in; git; optionally [Obsidian](https://obsidian.md) pointed at `wiki/` as your reading/graph surface.
-2. **Clone this kit** (or Code → Download ZIP) into a folder that will BE your second brain — e.g. `~/brain/`.
-3. **Right now, request your AI conversation export** — whichever you actually use (Claude, ChatGPT, or Grok). Do this before anything else in this list, because it's the single densest source this brain has and also the slowest to arrive. For Claude: claude.ai → click your initials (bottom-left) → Settings → Privacy → **Export data**. A download link comes by email — **it expires in 24 hours**, so download it the same day it arrives, don't leave it for later.
-
-   Once that request is in, work through whatever else you have — old notes on this machine, live Google connectors, LinkedIn, Google Takeout, and everything else — at your own pace using [`context/export-handout.md`](context/export-handout.md) (the quick per-service list) and [`context/data-census.md`](context/data-census.md) (every source that exists, plus the legal letter for services with no export button).
+2. **Download or clone this kit** (Code → Download ZIP, or `git clone`) into the folder that will BE your second brain — e.g. `~/brain/`.
+3. **Copy whatever data you already have into `raw/inbox/` — before you open Claude Code at all.** Old exports, notes, a folder of files — drop them in as they are. **Zip files are fine to drop in directly, no need to unzip first.** Don't have anything on hand yet? That's fine too, go get what you can — the per-service how-to is reference material, not something to read now: [`context/export-handout.md`](context/export-handout.md) (quick list) and [`context/data-census.md`](context/data-census.md) (the complete territory, every service). Come back and copy in whatever you get.
 4. **Open Claude Code in the folder and send this as your first message:**
 
    ```
@@ -24,9 +22,9 @@ The setup is deliberately **flipped from how most tools onboard you**: instead o
    and I'm ready to set up my second brain. Please run /setup-brain.
    ```
 
-   It reads whatever data is already reachable, drafts a picture of who you are, and asks you to **confirm-and-correct** — plus the two things only you can answer (what you want the brain to *do*, and what's private-forever). From that it writes your `NORTHSTAR.md`.
-5. **As exports arrive, drop them into `raw/inbox/` and run `/ingest-source`.** Claude reads each source, writes/updates wiki pages, cross-links, logs, and files the original away.
-6. From then on: ask questions (good answers get filed back as pages), run `/wiki-maintenance` at session end, `/wiki-lint` every 5–10 sessions, `/retro` to make the system improve itself.
+   It reads what's already in the inbox, drafts a picture of who you are and what this brain should focus on, and asks you to **confirm-and-correct** that — plus the one thing it can't infer for you: what's private-forever. From there it writes your `NORTHSTAR.md` and starts ingesting what's in the inbox.
+5. **From here it runs largely on its own.** It shouldn't need to stop and ask you things that are already answered in its own documentation — only genuine judgment calls (an ambiguous private-forever question, a real contradiction) surface to you. As more exports arrive over the following days, drop them into `raw/inbox/` and say "ingest this" (or run `/ingest-source`) whenever you're ready.
+6. Ongoing habits: ask questions (good answers get filed back as pages), `/wiki-maintenance` at session end, `/wiki-lint` every 5–10 sessions, `/retro` to make the system improve itself.
 
 ## The structure — what every folder is
 
@@ -110,7 +108,7 @@ The background for all of this is the [Culture of Learning](wiki/Topics/Culture%
 
 ## The honest expectations
 
-- **Breakeven takes about a month.** The one documented field report of this pattern found time-invested ≈ time-saved at the one-month mark. The payoff compounds after that, and is largest for deep, specialized work where re-explaining your context is genuinely expensive.
+- **Progress is milestone-based, not calendar-based** — see `NORTHSTAR.md`'s Milestones section once it's written. One documented build of this pattern found time-invested ≈ time-saved around a month of real use, with the payoff compounding after — a useful data point for expectations, not a schedule to hold yourself to.
 - **Capture is not the hard part — distillation is.** Second brains die of the collector's fallacy (hoarding) and taxonomy rot (elaborate tags nobody maintains). This kit's answer: the LLM does the bookkeeping, the schema enforces structure, and the lint loop catches drift. Your job is judgment, not filing.
 - **Privacy is architectural here**: `raw/` never leaves your machine (gitignored), the wiki is compiled locally, and anything you mark private-forever during setup stays out of the wiki entirely. If you push your personal brain to a remote, make it a **private** repo.
 

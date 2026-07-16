@@ -14,7 +14,7 @@ Its counterpart, the **constitution** (see [constitution/](constitution/)), cove
 
 This kit ships with its own Northstar, so you can see the shape before writing yours:
 
-> **Every session starts from everything you've ever fed it.** The second brain exists so that your AI reasons from your accumulated context — your thinking, decisions, sources, and history — instead of starting from zero every conversation. It must be **compounding** (each session leaves it richer than it found it), **trustworthy** (verified, contradiction-flagged, never letting opinion harden into fact), and **owned** (plain files on your machine, readable without any tool, exportable in one copy-paste). The human does judgment and direction; the AI does the maintenance that killed every second brain before it — and it **minimizes the human's load**: it does what it can before involving you, sizes what remains (is this big or small?), and presents it so the decision is easy to make. And it is **always learning**: every correction, miss, and insight gets folded back into how it works, so the system that runs month two is better than the one that ran month one. The 30-day test: you stop re-explaining yourself.
+> **Every session starts from everything you've ever fed it.** The second brain exists so that your AI reasons from your accumulated context — your thinking, decisions, sources, and history — instead of starting from zero every conversation. It must be **compounding** (each session leaves it richer than it found it), **trustworthy** (verified, contradiction-flagged, never letting opinion harden into fact), and **owned** (plain files on your machine, readable without any tool, exportable in one copy-paste). The human does judgment and direction; the AI does the maintenance that killed every second brain before it — and it **minimizes the human's load**: it does what it can before involving you, sizes what remains (is this big or small?), and presents it so the decision is easy to make. And it is **always learning**: every correction, miss, and insight gets folded back into how it works, so it keeps getting better the more you use it. The test that matters: you stop re-explaining yourself — whenever that milestone actually arrives for you.
 
 Everything in this kit serves that statement, and anything that doesn't serve it stays out. That's a Northstar doing its job. Yours, below, *specializes* it: same system purpose, pointed at your particular life and work.
 
@@ -48,11 +48,17 @@ Every second brain sits somewhere on a spectrum of how much is delegated to the 
 
 **Why this level, not more or less**: {{LEVEL_RATIONALE}}
 
-## The 30-day success test
+## Milestones — not a calendar
 
-Come back to this after a month of real use and ask honestly: {{THIRTY_DAY_TEST}}
+Progress here is checked by what's actually happened, not by how many days have passed. Some builds hit these in a week; others take longer, depending on how much you bring in and how deep the domain is — there's no clock to watch, only these to check off:
 
-If the answer is no, the gap is the thing to fix next — not a reason to abandon the system. A second brain that isn't earning its maintenance cost yet is normal at 30 days; the field data on this pattern shows time-invested roughly equals time-saved at the one-month mark, with the payoff compounding after that. See [context/why-a-second-brain.md](context/why-a-second-brain.md) for the honest cost accounting.
+- [ ] **Setup complete** — this file written, `CLAUDE.md` filled in, a first profile page exists.
+- [ ] **First real ingest** — your first genuine export (not just what was on hand at setup) processed into the wiki.
+- [ ] **First re-use** — a session opens *from* something already compiled, instead of you re-explaining it. This is the core signal that it's working.
+- [ ] **First self-made connection** — two sources link up on their own, something you didn't have to notice yourself. The compounding effect showing up for real.
+- [ ] **First maintenance catch** — `/wiki-lint` or `/retro` catches a real gap or drift without you pointing it out.
+
+If a milestone is taking a long time to hit, that's the thing to look at — usually it means not enough has been ingested yet, not that the system has failed. See [context/why-a-second-brain.md](context/why-a-second-brain.md) for the honest cost accounting (one documented build found time-invested roughly equaled time-saved around a month in — a data point about someone else's pace, not a schedule for yours).
 
 ## Related
 

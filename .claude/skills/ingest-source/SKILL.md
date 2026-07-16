@@ -9,13 +9,15 @@ Turns one raw file into compiled, cross-referenced wiki knowledge. Works for any
 
 ## Instructions
 
-### Step 0 — Check the inbox
+### Step 0 — Check the inbox, extract archives, process the whole thing
 
 ```bash
 ls raw/inbox/ | grep -v ".DS_Store" | grep -v "^._"
 ```
 
+- **A `.zip`, `.tar`, or `.tar.gz` file** → extract it in place first (`unzip file.zip -d file/`, `tar -xf file.tar.gz`), then treat its contents as newly-arrived inbox files. Don't ask the user to unzip it themselves — that's friction the system should absorb, not pass along.
 - **Files found** → group filenames that share significant words into clusters; read and process each cluster together. An image often belongs to the same cluster as a text file (a chart plus its analysis, a screenshot plus the conversation that discusses it) — group them.
+- **Multiple clusters found** → process all of them in this same session, one after another, without stopping to ask whether to continue between clusters. Report a brief line per cluster as you finish it, not a check-in before starting the next one. This is what "runs largely on its own" means in practice — see "Defaults" below for what to do instead of asking when something's ambiguous.
 - **Inbox empty** → ask which source to process.
 - **OS resource-fork stubs** (`._*` files) are not sources — ignore and clean them, never process them.
 
@@ -163,6 +165,17 @@ Append to `wiki/_log.md`:
 ### Step 10 — Update the manifest
 
 If this ingestion completes or advances a cluster tracked in `raw/MANIFEST.md`, update that cluster's status and "Wiki Output" column, and bump the manifest's "Updated:" date.
+
+## Defaults — don't stop to ask, don't guess either
+
+The point of a documented default is that it's neither: not a guess (which can be wrong silently) and not a question (which stops an autonomous run for something already decided). When one of these comes up, apply the default, log what you did, and keep going — only surface something to the user when it's a genuine judgment call none of these cover.
+
+- **Unrecognized or unparseable format** → read whatever text can be extracted, note "format not recognized by any parser" on the Source page, and continue. Don't ask what to do; a partial read logged as partial beats stopping.
+- **Archive with mixed content** → extract everything, process each recognized piece by its own type (Step 1 onward), skip and log anything genuinely unreadable. Don't ask which parts matter.
+- **Ambiguous topic-cluster placement** (a file could reasonably belong under 2+ existing topics, or under a topic vs. a new one) → make the best-guess placement, note the ambiguity in a one-line comment on the page or in `_log.md`, and let a future `/wiki-lint` pass reconcile it. Don't block ingestion asking which folder is "right."
+- **Possible private-forever content, not certain** → default conservative: treat it as raw-only (don't synthesize into a wiki page), flag it explicitly in `_log.md` for the user to review later if genuinely unsure. Don't ask mid-ingest for every borderline file — that's exactly the repeated-interruption pattern autonomous operation exists to avoid.
+- **File resembles one already ingested** → the diff-against-previous check (Step 0's routing note) already covers this — apply it, don't ask.
+- **A file with no clear topic, or too thin to be worth a page** → per Step 3's own rule, add it as an unresolved wikilink from wherever it's mentioned rather than forcing a stub page, and move on.
 
 ## Epistemic standards
 

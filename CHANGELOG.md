@@ -4,6 +4,14 @@ All notable changes to this kit are recorded here. Format loosely follows [Keep 
 
 ## Unreleased
 
+### Changed — real field feedback (first non-author test of the kit)
+- **Removed the 30-day test mechanism entirely, replaced with Milestones.** A fixed calendar checkpoint doesn't fit everyone's pace; `NORTHSTAR.md`, `setup-brain`, and `how-to-build.md` now track achievement-based checkpoints instead (setup complete → first real ingest → first re-use → first self-made connection → first maintenance catch). `CLAUDE.md`'s "done at 30 days" framing removed too.
+- **Restructured the Quickstart sequence** — copying data into `raw/inbox/` now happens *before* `/setup-brain` runs, not after. The old order (request exports → run setup → drop exports in later) meant setup ran against an empty inbox in practice; now the user brings what they have first, so setup has real material from the start. Zip files can be dropped in directly — no manual unzip required.
+- **Cut the number of explicit questions `/setup-brain` asks.** What the brain should focus on and which delegation level fits are now drafted from the data (like who-you-are already was) and confirmed in one combined pass; only the private-forever question — which structurally can't be inferred — is still asked as a standalone question.
+- **`/ingest-source` now extracts archives automatically** (`.zip`/`.tar`/`.tar.gz`) instead of assuming pre-extracted files, and processes every cluster found in one session rather than stopping between them.
+- **Added a "Defaults — don't stop to ask" section to `/ingest-source`**: documented defaults for unrecognized formats, mixed-content archives, ambiguous topic placement, and borderline-private content, so autonomous runs act on a decided default instead of guessing or interrupting for things the docs already answer.
+- **`/setup-brain` now offers to chain straight into ingesting the inbox** in the same session once setup finishes, instead of ending the session and requiring a separate invocation.
+
 ### Changed
 - Quickstart step 3 ("get your data flowing") rewrote as one clear action (request your AI-conversation export right now, with the exact click path) instead of a three-lane taxonomy dumped in the reader's face — the full source list stays one hop away in `context/export-handout.md` / `context/data-census.md`, where it belongs. Step 4 similarly trimmed — the instruction leads, the explanation follows in one sentence instead of a parenthetical before it.
 
