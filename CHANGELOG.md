@@ -4,6 +4,9 @@ All notable changes to this kit are recorded here. Format loosely follows [Keep 
 
 ## Unreleased
 
+### Added
+- **`context/ancillary-options.md`** — optional tooling to extend the brain once it's running: Obsidian-format skills for anyone browsing the wiki in Obsidian, a cross-vendor agentic-CLI reference (orchestrator + specialist-subprocess pattern), the MCP-server safety question (can it search-only, or can it also transact) with a worked travel example, and a hardware-aware speech-to-text decision guide (Apple Silicon → local Whisper is fine; older Intel Macs → cloud dictation apps are strictly better on both accuracy and CPU cost, not just more convenient). Nothing here is required; the kit works fully without any of it.
+
 ### Changed — a second round of real feedback, same day
 - **Prerequisites now progressive, not a wall.** Only Claude Code is a real blocking requirement; git is mentioned in passing where it's actually relevant (cloning) instead of listed as a prerequisite, and Obsidian moved to the end as an optional nice-to-have. Complexity should reveal itself as it becomes relevant, not front-load before the reader has seen any value.
 - **Corrected a mischaracterization: this was never about asking fewer questions.** It's about not asking ANY question until the data has genuinely been exhausted — effort before asking, not a target count. `setup-brain`'s Step 2 rewritten from "a light, local pass" to an explicitly thorough read (open files, read content, not just titles); the "ask as little as possible" framing replaced with "spend real time first, the few surviving questions are a consequence of that effort, not the goal."
